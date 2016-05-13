@@ -65,13 +65,13 @@ relations:
   - ceph:radosgw
 - - ceph-radosgw:identity-service
   - keystone:identity-service
-series: xenial
+series: trusty
 services:
   ceph:
     annotations:
       gui-x: '750'
       gui-y: '500'
-    charm: cs:xenial/ceph
+    charm: cs:trusty/ceph
     num_units: 3
     options:
       fsid: 5a791d94-980b-11e4-b6f6-3c970e8b1cf7
@@ -82,7 +82,7 @@ services:
     annotations:
       gui-x: '1000'
       gui-y: '250'
-    charm: cs:xenial/ceph-radosgw
+    charm: cs:trusty/ceph-radosgw
     num_units: 1
     options:
       use-embedded-webserver: true
@@ -90,7 +90,7 @@ services:
     annotations:
       gui-x: '750'
       gui-y: '0'
-    charm: cs:xenial/cinder
+    charm: cs:trusty/cinder
     num_units: 1
     options:
       block-device: None
@@ -99,19 +99,19 @@ services:
     annotations:
       gui-x: '750'
       gui-y: '250'
-    charm: cs:xenial/cinder-ceph
+    charm: cs:trusty/cinder-ceph
     num_units: 0
   glance:
     annotations:
       gui-x: '250'
       gui-y: '0'
-    charm: cs:xenial/glance
+    charm: cs:trusty/glance
     num_units: 1
   keystone:
     annotations:
       gui-x: '500'
       gui-y: '0'
-    charm: cs:xenial/keystone
+    charm: cs:trusty/keystone
     num_units: 1
     options:
       admin-password: openstack
@@ -119,7 +119,7 @@ services:
     annotations:
       gui-x: '0'
       gui-y: '250'
-    charm: cs:xenial/percona-cluster
+    charm: cs:trusty/percona-cluster
     num_units: 1
     options:
       max-connections: 20000
@@ -128,7 +128,7 @@ services:
     annotations:
       gui-x: '500'
       gui-y: '500'
-    charm: cs:xenial/neutron-api
+    charm: cs:trusty/neutron-api
     num_units: 1
     options:
       neutron-security-groups: true
@@ -137,7 +137,7 @@ services:
     annotations:
       gui-x: '0'
       gui-y: '0'
-    charm: cs:xenial/neutron-gateway
+    charm: cs:trusty/neutron-gateway
     num_units: 1
     options:
       ext-port: eth1
@@ -145,13 +145,13 @@ services:
     annotations:
       gui-x: '250'
       gui-y: '500'
-    charm: cs:xenial/neutron-openvswitch
+    charm: cs:trusty/neutron-openvswitch
     num_units: 0
   nova-cloud-controller:
     annotations:
       gui-x: '0'
       gui-y: '500'
-    charm: cs:xenial/nova-cloud-controller
+    charm: cs:trusty/nova-cloud-controller
     num_units: 1
     options:
       network-manager: Neutron
@@ -159,7 +159,7 @@ services:
     annotations:
       gui-x: '250'
       gui-y: '250'
-    charm: cs:xenial/nova-compute
+    charm: cs:trusty/nova-compute
     num_units: 1
     options:
       enable-live-migration: False
@@ -169,11 +169,11 @@ services:
     annotations:
       gui-x: '500'
       gui-y: '-250'
-    charm: cs:xenial/openstack-dashboard
+    charm: cs:trusty/openstack-dashboard
     num_units: 1
   rabbitmq-server:
     annotations:
       gui-x: '500'
       gui-y: '250'
-    charm: cs:xenial/rabbitmq-server
+    charm: cs:trusty/rabbitmq-server
     num_units: 1
