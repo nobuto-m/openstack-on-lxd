@@ -189,5 +189,3 @@ services:
       gui-y: '250'
     charm: cs:trusty/rabbitmq-server
     num_units: 1
-    options:
-      source: cloud:trusty-liberty
