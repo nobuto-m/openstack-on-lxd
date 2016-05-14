@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+set -u
+
+lxc profile device set default eth0 mtu 9000
+
+lxc profile create juju-default 2>/dev/null || echo "juju-default profile already exists"
+lxc profile edit juju-default < lxd-profile.yaml
+
+time juju bootstrap --config config.yaml localhost lxd
+
+juju deploy bundle.yaml
+
+while ! juju status --format line | grep -q 'neutron-openvswitch/.*:active'; do
+    sleep 5
+done
