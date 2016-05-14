@@ -10,10 +10,10 @@ lxc profile edit juju-default < lxd-profile.yaml
 
 time juju bootstrap --config config.yaml localhost lxd
 
-time juju deploy bundle.yaml
+juju deploy bundle.yaml
 
 # wait until nova-compute/0 becomes online
-time while ! juju ssh nova-compute/0 'true' 2>/dev/null; do
+while ! juju ssh nova-compute/0 'true' 2>/dev/null; do
     sleep 5
 done
 
@@ -58,6 +58,7 @@ EOF
     which nova-compute && sudo service nova-compute restart || true
 ' >/dev/null
 
-time while juju status --format line | egrep -q -w 'maintenance|blocked|waiting'; do
+watch_service=neutron-openvswitch
+while juju status --format line "$watch_service" | grep -q "${watch_service}/.*:active"; do
     sleep 5
 done
