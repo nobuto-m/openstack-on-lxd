@@ -58,7 +58,6 @@ EOF
     which nova-compute && sudo service nova-compute restart || true
 ' >/dev/null
 
-watch_service=neutron-openvswitch
-while juju status --format line "$watch_service" | grep -q "${watch_service}/.*:active"; do
+while ! juju status --format line | grep -q 'neutron-openvswitch/.*:active'; do
     sleep 5
 done
