@@ -74,7 +74,7 @@ services:
     charm: cs:trusty/ceph
     num_units: 3
     options:
-      source: cloud:trusty-liberty
+      source: cloud:trusty-mitaka
       fsid: 5a791d94-980b-11e4-b6f6-3c970e8b1cf7
       monitor-secret: AQAi5a9UeJXUExAA+By9u+GPhl8/XiUQ4nwI3A==
       osd-devices: /srv/osd
@@ -86,7 +86,7 @@ services:
     charm: cs:trusty/ceph-radosgw
     num_units: 1
     options:
-      source: cloud:trusty-liberty
+      source: cloud:trusty-mitaka
       use-embedded-webserver: true
   cinder:
     annotations:
@@ -95,7 +95,7 @@ services:
     charm: cs:trusty/cinder
     num_units: 1
     options:
-      openstack-origin: cloud:trusty-liberty
+      openstack-origin: cloud:trusty-mitaka
       block-device: None
       glance-api-version: 2
   cinder-ceph:
@@ -111,7 +111,7 @@ services:
     charm: cs:trusty/glance
     num_units: 1
     options:
-      openstack-origin: cloud:trusty-liberty
+      openstack-origin: cloud:trusty-mitaka
   keystone:
     annotations:
       gui-x: '500'
@@ -119,7 +119,7 @@ services:
     charm: cs:trusty/keystone
     num_units: 1
     options:
-      openstack-origin: cloud:trusty-liberty
+      openstack-origin: cloud:trusty-mitaka
       admin-password: openstack
   mysql:
     annotations:
@@ -137,7 +137,7 @@ services:
     charm: cs:trusty/neutron-api
     num_units: 1
     options:
-      openstack-origin: cloud:trusty-liberty
+      openstack-origin: cloud:trusty-mitaka
       neutron-security-groups: true
       overlay-network-type: "gre vxlan"
   neutron-gateway:
@@ -147,7 +147,7 @@ services:
     charm: cs:trusty/neutron-gateway
     num_units: 1
     options:
-      openstack-origin: cloud:trusty-liberty
+      openstack-origin: cloud:trusty-mitaka
       ext-port: eth1
   neutron-openvswitch:
     annotations:
@@ -162,7 +162,7 @@ services:
     charm: cs:trusty/nova-cloud-controller
     num_units: 1
     options:
-      openstack-origin: cloud:trusty-liberty
+      openstack-origin: cloud:trusty-mitaka
       network-manager: Neutron
   nova-compute:
     annotations:
@@ -171,7 +171,7 @@ services:
     charm: cs:trusty/nova-compute
     num_units: 1
     options:
-      openstack-origin: cloud:trusty-liberty
+      openstack-origin: cloud:trusty-mitaka
       enable-live-migration: False
       enable-resize: False
       migration-auth-type: ssh
@@ -182,7 +182,7 @@ services:
     charm: cs:trusty/openstack-dashboard
     num_units: 1
     options:
-      openstack-origin: cloud:trusty-liberty
+      openstack-origin: cloud:trusty-mitaka
   rabbitmq-server:
     annotations:
       gui-x: '500'
