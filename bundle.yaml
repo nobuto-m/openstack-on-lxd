@@ -53,7 +53,7 @@ services:
     num_units: 1
     options:
       openstack-origin: cloud:trusty-mitaka
-      worker-multiplier: 1
+      worker-multiplier: '1.0'
   keystone:
     annotations:
       gui-x: '500'
@@ -63,7 +63,7 @@ services:
     options:
       openstack-origin: cloud:trusty-mitaka
       admin-password: openstack
-      worker-multiplier: 1
+      worker-multiplier: '1.0'
   mysql:
     annotations:
       gui-x: '0'
@@ -83,7 +83,7 @@ services:
       openstack-origin: cloud:trusty-mitaka
       neutron-security-groups: true
       overlay-network-type: "gre vxlan"
-      worker-multiplier: 1
+      worker-multiplier: '1.0'
   neutron-gateway:
     annotations:
       gui-x: '0'
@@ -108,7 +108,7 @@ services:
     options:
       openstack-origin: cloud:trusty-mitaka
       network-manager: Neutron
-      worker-multiplier: 1
+      worker-multiplier: '1.0'
   nova-compute:
     annotations:
       gui-x: '250'
