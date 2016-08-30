@@ -1,0 +1,71 @@
+MODEL    CONTROLLER  CLOUD/REGION   VERSION
+default  localhost   lxd/localhost  2.0-beta16
+
+APP                    VERSION  STATUS       EXPOSED  ORIGIN      CHARM                  REV  OS
+glance                          maintenance  false    jujucharms  glance                 2    ubuntu
+keystone                        maintenance  false    jujucharms  keystone               2    ubuntu
+mysql                           maintenance  false    jujucharms  percona-cluster        2    ubuntu
+neutron-api                     maintenance  false    jujucharms  neutron-api            3    ubuntu
+neutron-gateway                 unknown      false    jujucharms  neutron-gateway        3    ubuntu
+neutron-openvswitch                          false    jujucharms  neutron-openvswitch    3    ubuntu
+nova-cloud-controller           maintenance  false    jujucharms  nova-cloud-controller  4    ubuntu
+nova-compute                    unknown      false    jujucharms  nova-compute           3    ubuntu
+openstack-dashboard             unknown      false    jujucharms  openstack-dashboard    2    ubuntu
+rabbitmq-server                 unknown      false    jujucharms  rabbitmq-server        5    ubuntu
+
+RELATION                 PROVIDES               CONSUMES               TYPE
+cluster                  glance                 glance                 peer
+identity-service         glance                 keystone               regular
+shared-db                glance                 mysql                  regular
+image-service            glance                 nova-cloud-controller  regular
+image-service            glance                 nova-compute           regular
+amqp                     glance                 rabbitmq-server        regular
+cluster                  keystone               keystone               peer
+shared-db                keystone               mysql                  regular
+identity-service         keystone               neutron-api            regular
+identity-service         keystone               nova-cloud-controller  regular
+identity-service         keystone               openstack-dashboard    regular
+cluster                  mysql                  mysql                  peer
+shared-db                mysql                  neutron-api            regular
+shared-db                mysql                  nova-cloud-controller  regular
+cluster                  neutron-api            neutron-api            peer
+neutron-plugin-api       neutron-api            neutron-gateway        regular
+neutron-plugin-api       neutron-api            neutron-openvswitch    regular
+neutron-api              neutron-api            nova-cloud-controller  regular
+amqp                     neutron-api            rabbitmq-server        regular
+cluster                  neutron-gateway        neutron-gateway        peer
+quantum-network-service  neutron-gateway        nova-cloud-controller  regular
+amqp                     neutron-gateway        rabbitmq-server        regular
+neutron-plugin           neutron-openvswitch    nova-compute           regular
+amqp                     neutron-openvswitch    rabbitmq-server        regular
+cluster                  nova-cloud-controller  nova-cloud-controller  peer
+cloud-compute            nova-cloud-controller  nova-compute           regular
+amqp                     nova-cloud-controller  rabbitmq-server        regular
+neutron-plugin           nova-compute           neutron-openvswitch    subordinate
+compute-peer             nova-compute           nova-compute           peer
+amqp                     nova-compute           rabbitmq-server        regular
+cluster                  openstack-dashboard    openstack-dashboard    peer
+cluster                  rabbitmq-server        rabbitmq-server        peer
+
+UNIT                     WORKLOAD     AGENT       MACHINE  PUBLIC-ADDRESS  PORTS  MESSAGE
+glance/0                 maintenance  executing   0        10.0.8.105             (install) Installing apt packages
+keystone/0               maintenance  executing   1        10.0.8.157             (install) Installing apt packages
+mysql/0                  maintenance  executing   2        10.0.8.122             (install) installing charm software
+neutron-api/0            maintenance  executing   3        10.0.8.192             (install) installing charm software
+neutron-gateway/0        unknown      allocating  4                               Waiting for agent initialization to finish
+nova-cloud-controller/0  maintenance  executing   5        10.0.8.152             (install) installing charm software
+nova-compute/0           unknown      allocating  6        10.0.8.66              Waiting for agent initialization to finish
+openstack-dashboard/0    unknown      allocating  7                               Waiting for agent initialization to finish
+rabbitmq-server/0        unknown      allocating  8        10.0.8.158             Waiting for agent initialization to finish
+
+MACHINE  STATE    DNS         INS-ID         SERIES  AZ
+0        started  10.0.8.105  juju-4a9c27-0  xenial  
+1        started  10.0.8.157  juju-4a9c27-1  xenial  
+2        started  10.0.8.122  juju-4a9c27-2  xenial  
+3        started  10.0.8.192  juju-4a9c27-3  xenial  
+4        pending              pending        xenial  
+5        started  10.0.8.152  juju-4a9c27-5  xenial  
+6        pending  10.0.8.66   juju-4a9c27-6  xenial  
+7        pending              pending        xenial  
+8        pending  10.0.8.158  juju-4a9c27-8  xenial  
+

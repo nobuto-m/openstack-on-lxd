@@ -1,0 +1,26 @@
+MODEL    CONTROLLER  CLOUD/REGION   VERSION
+default  localhost   lxd/localhost  2.0-beta16
+
+APP                    VERSION  STATUS   EXPOSED  ORIGIN      CHARM                  REV  OS
+glance                          unknown  false    jujucharms  glance                 2    ubuntu
+keystone                        unknown  false    jujucharms  keystone               2    ubuntu
+mysql                           unknown  false    jujucharms  percona-cluster        2    ubuntu
+neutron-api                     unknown  false    jujucharms  neutron-api            3    ubuntu
+neutron-gateway                 unknown  false    jujucharms  neutron-gateway        3    ubuntu
+neutron-openvswitch                      false    jujucharms  neutron-openvswitch    3    ubuntu
+nova-cloud-controller           unknown  false    jujucharms  nova-cloud-controller  4    ubuntu
+nova-compute                    unknown  false    jujucharms  nova-compute           3    ubuntu
+
+RELATION      PROVIDES               CONSUMES               TYPE
+cluster       glance                 glance                 peer
+cluster       keystone               keystone               peer
+cluster       mysql                  mysql                  peer
+cluster       neutron-api            neutron-api            peer
+cluster       neutron-gateway        neutron-gateway        peer
+cluster       nova-cloud-controller  nova-cloud-controller  peer
+compute-peer  nova-compute           nova-compute           peer
+
+UNIT  WORKLOAD  AGENT  MACHINE  PUBLIC-ADDRESS  PORTS  MESSAGE
+
+MACHINE  STATE  DNS  INS-ID  SERIES  AZ
+

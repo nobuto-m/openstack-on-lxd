@@ -1,0 +1,72 @@
+MODEL    CONTROLLER  CLOUD/REGION   VERSION
+default  localhost   lxd/localhost  2.0-beta16
+
+APP                    VERSION  STATUS   EXPOSED  ORIGIN      CHARM                  REV  OS
+glance                          waiting  false    jujucharms  glance                 2    ubuntu
+keystone                        active   false    jujucharms  keystone               2    ubuntu
+mysql                           active   false    jujucharms  percona-cluster        2    ubuntu
+neutron-api                     waiting  false    jujucharms  neutron-api            3    ubuntu
+neutron-gateway                 waiting  false    jujucharms  neutron-gateway        3    ubuntu
+neutron-openvswitch                      false    jujucharms  neutron-openvswitch    3    ubuntu
+nova-cloud-controller           waiting  false    jujucharms  nova-cloud-controller  4    ubuntu
+nova-compute                    waiting  false    jujucharms  nova-compute           3    ubuntu
+openstack-dashboard             active   false    jujucharms  openstack-dashboard    2    ubuntu
+rabbitmq-server                 error    false    jujucharms  rabbitmq-server        5    ubuntu
+
+RELATION                 PROVIDES               CONSUMES               TYPE
+cluster                  glance                 glance                 peer
+identity-service         glance                 keystone               regular
+shared-db                glance                 mysql                  regular
+image-service            glance                 nova-cloud-controller  regular
+image-service            glance                 nova-compute           regular
+amqp                     glance                 rabbitmq-server        regular
+cluster                  keystone               keystone               peer
+shared-db                keystone               mysql                  regular
+identity-service         keystone               neutron-api            regular
+identity-service         keystone               nova-cloud-controller  regular
+identity-service         keystone               openstack-dashboard    regular
+cluster                  mysql                  mysql                  peer
+shared-db                mysql                  neutron-api            regular
+shared-db                mysql                  nova-cloud-controller  regular
+cluster                  neutron-api            neutron-api            peer
+neutron-plugin-api       neutron-api            neutron-gateway        regular
+neutron-plugin-api       neutron-api            neutron-openvswitch    regular
+neutron-api              neutron-api            nova-cloud-controller  regular
+amqp                     neutron-api            rabbitmq-server        regular
+cluster                  neutron-gateway        neutron-gateway        peer
+quantum-network-service  neutron-gateway        nova-cloud-controller  regular
+amqp                     neutron-gateway        rabbitmq-server        regular
+neutron-plugin           neutron-openvswitch    nova-compute           regular
+amqp                     neutron-openvswitch    rabbitmq-server        regular
+cluster                  nova-cloud-controller  nova-cloud-controller  peer
+cloud-compute            nova-cloud-controller  nova-compute           regular
+amqp                     nova-cloud-controller  rabbitmq-server        regular
+neutron-plugin           nova-compute           neutron-openvswitch    subordinate
+compute-peer             nova-compute           nova-compute           peer
+amqp                     nova-compute           rabbitmq-server        regular
+cluster                  openstack-dashboard    openstack-dashboard    peer
+cluster                  rabbitmq-server        rabbitmq-server        peer
+
+UNIT                     WORKLOAD  AGENT      MACHINE  PUBLIC-ADDRESS  PORTS           MESSAGE
+glance/0                 waiting   idle       0        10.0.8.105      9292/tcp        Incomplete relations: messaging
+keystone/0               active    idle       1        10.0.8.157      5000/tcp        Unit is ready
+mysql/0                  active    idle       2        10.0.8.122                      Unit is ready
+neutron-api/0            waiting   idle       3        10.0.8.192      9696/tcp        Incomplete relations: messaging
+neutron-gateway/0        waiting   idle       4        10.0.8.51                       Incomplete relations: messaging
+nova-cloud-controller/0  waiting   executing  5        10.0.8.152      8774/tcp        Incomplete relations: messaging
+nova-compute/0           waiting   idle       6        10.0.8.66                       Incomplete relations: messaging
+  neutron-openvswitch/0  waiting   idle                10.0.8.66                       Incomplete relations: messaging
+openstack-dashboard/0    active    idle       7        10.0.8.159      80/tcp,443/tcp  Unit is ready
+rabbitmq-server/0        error     idle       8        10.0.8.158                      hook failed: "config-changed"
+
+MACHINE  STATE    DNS         INS-ID         SERIES  AZ
+0        started  10.0.8.105  juju-4a9c27-0  xenial  
+1        started  10.0.8.157  juju-4a9c27-1  xenial  
+2        started  10.0.8.122  juju-4a9c27-2  xenial  
+3        started  10.0.8.192  juju-4a9c27-3  xenial  
+4        started  10.0.8.51   juju-4a9c27-4  xenial  
+5        started  10.0.8.152  juju-4a9c27-5  xenial  
+6        started  10.0.8.66   juju-4a9c27-6  xenial  
+7        started  10.0.8.159  juju-4a9c27-7  xenial  
+8        started  10.0.8.158  juju-4a9c27-8  xenial  
+
