@@ -63,6 +63,7 @@ services:
     options:
       admin-password: openstack
       preferred-api-version: 3
+      debug: true
   mysql:
     annotations:
       gui-x: '0'
