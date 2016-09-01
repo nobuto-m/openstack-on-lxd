@@ -15,3 +15,15 @@ juju deploy bundle.yaml
 while ! juju status --format line | grep -q 'neutron-openvswitch/.*:active'; do
     sleep 5
 done
+
+juju run --application keystone "
+    mkdir -p /etc/keystone/domains/
+    cat <<EOF | tee /etc/keystone/domains/keystone.myorg.example.com.conf
+[ldap]
+url = ldap://$(lxc list ldap | grep -w RUNNING | col6)
+user_tree_dn = ou=People,dc=myorg,dc=example,dc=com
+group_tree_dn = ou=Group,dc=myorg,dc=example,dc=com
+EOF
+
+    service apache2 restart
+"

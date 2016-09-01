@@ -58,7 +58,7 @@ services:
     annotations:
       gui-x: '500'
       gui-y: '0'
-    charm: cs:xenial/keystone
+    charm: ./keystone
     num_units: 1
     options:
       admin-password: openstack
