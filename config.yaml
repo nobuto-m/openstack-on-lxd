@@ -1,7 +1,6 @@
 default-series: xenial
-agent-stream: devel
-#apt-http-proxy: http://squid-deb-proxy.lxd:8000
-agent-metadata-url: http://10.0.8.3/streams.canonical.com/juju/tools
-apt-mirror: http://mirror.lxd/archive.ubuntu.com/ubuntu
+apt-http-proxy: http://squid-deb-proxy.lxd:8000
+#agent-metadata-url: http://10.0.8.3/streams.canonical.com/juju/tools
+#apt-mirror: http://mirror.lxd/archive.ubuntu.com/ubuntu
 enable-os-upgrade: false
 enable-os-upgrade: false
