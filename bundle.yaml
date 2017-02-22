@@ -59,6 +59,7 @@ services:
     num_units: 1
     options:
       admin-password: openstack
+      preferred-api-version: 3
   mysql:
     annotations:
       gui-x: '0'
