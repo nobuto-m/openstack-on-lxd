@@ -215,7 +215,7 @@ services:
   lxd:
     annotations:
       gui-x: '1250'
-      gui-y: '0'
+      gui-y: '250'
     charm: cs:~openstack-charmers-next/lxd
     options:
       block-devices: None
