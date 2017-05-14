@@ -184,10 +184,7 @@ services:
     options:
       worker-multiplier: 0.1
       network-manager: Neutron
-      openstack-origin: |
-        deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/pike main
-        |
-        391A9AA2147192839E9DB0315EDB1B62EC4926EA
+      openstack-origin: cloud:xenial-ocata
   nova-compute:
     annotations:
       gui-x: '250'
@@ -197,10 +194,7 @@ services:
     options:
       enable-live-migration: False
       enable-resize: False
-      openstack-origin: |
-        deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/pike main
-        |
-        391A9AA2147192839E9DB0315EDB1B62EC4926EA
+      openstack-origin: cloud:xenial-ocata
   nova-lxd:
     annotations:
       gui-x: '1000'
@@ -211,10 +205,7 @@ services:
       enable-live-migration: False
       enable-resize: False
       virt-type: lxd
-      openstack-origin: |
-        deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/pike main
-        |
-        391A9AA2147192839E9DB0315EDB1B62EC4926EA
+      openstack-origin: cloud:xenial-ocata
   lxd:
     annotations:
       gui-x: '1250'
