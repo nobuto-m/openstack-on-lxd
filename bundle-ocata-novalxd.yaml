@@ -1,6 +1,8 @@
 relations:
 - - nova-compute:amqp
   - rabbitmq-server:amqp
+- - nova-lxd:amqp
+  - rabbitmq-server:amqp
 - - neutron-gateway:amqp
   - rabbitmq-server:amqp
 - - keystone:shared-db
