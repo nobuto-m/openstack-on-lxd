@@ -1,6 +1,6 @@
 variables:
   openstack-origin: &openstack-origin |
-    deb http://10.0.8.3/ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/ocata main
+    deb http://10.0.8.3/ubuntu-cloud.archive.canonical.com/ubuntu xenial-proposed/ocata main
     |
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     Version: GnuPG v1
@@ -55,7 +55,7 @@ variables:
     =xg4S
     -----END PGP PUBLIC KEY BLOCK-----
   source: &source |
-    deb http://10.0.8.3/ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/ocata main
+    deb http://10.0.8.3/ubuntu-cloud.archive.canonical.com/ubuntu xenial-proposed/ocata main
   key: &key |
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     Version: GnuPG v1
