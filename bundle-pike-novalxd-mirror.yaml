@@ -298,6 +298,7 @@ services:
       hypervisor_mapping: true
       mirror_list: |
         [{url: 'http://10.0.8.3/cloud-images.ubuntu.com/releases/', name_prefix: 'ubuntu:released', path: 'streams/v1/index.json', max: 1, item_filters: ['release=xenial', 'arch=amd64', 'ftype~(disk1.img|root.tar.xz)']}]
+      use_swift: false
       # LP: #1679829
       # source: *source
       # key: *key
