@@ -163,30 +163,6 @@ relations:
   - mysql:shared-db
 - - nova-cloud-controller:neutron-api
   - neutron-api:neutron-api
-- - cinder:image-service
-  - glance:image-service
-- - cinder:amqp
-  - rabbitmq-server:amqp
-- - cinder:identity-service
-  - keystone:identity-service
-- - cinder:cinder-volume-service
-  - nova-cloud-controller:cinder-volume-service
-- - cinder-ceph:storage-backend
-  - cinder:storage-backend
-- - ceph:client
-  - nova-compute:ceph
-- - ceph:client
-  - nova-lxd:ceph
-- - cinder:shared-db
-  - mysql:shared-db
-- - ceph:client
-  - cinder-ceph:ceph
-- - ceph:client
-  - glance:ceph
-- - ceph-radosgw:mon
-  - ceph:radosgw
-- - ceph-radosgw:identity-service
-  - keystone:identity-service
 - - nova-lxd:lxd
   - lxd:lxd
 - - glance-simplestreams-sync:identity-service
@@ -195,45 +171,6 @@ relations:
   - rabbitmq-server:amqp
 series: xenial
 services:
-  ceph:
-    annotations:
-      gui-x: '750'
-      gui-y: '500'
-    charm: cs:~openstack-charmers-next/ceph
-    num_units: 3
-    options:
-      fsid: 5a791d94-980b-11e4-b6f6-3c970e8b1cf7
-      monitor-secret: AQAi5a9UeJXUExAA+By9u+GPhl8/XiUQ4nwI3A==
-      osd-devices: /srv/osd
-      use-direct-io: False
-      source: *source
-      key: *key
-  ceph-radosgw:
-    annotations:
-      gui-x: '1000'
-      gui-y: '250'
-    charm: cs:~openstack-charmers-next/ceph-radosgw
-    num_units: 1
-    options:
-      source: *source
-      key: *key
-  cinder:
-    annotations:
-      gui-x: '750'
-      gui-y: '0'
-    charm: cs:~openstack-charmers-next/cinder
-    num_units: 1
-    options:
-      worker-multiplier: 0.1
-      block-device: None
-      glance-api-version: 2
-      openstack-origin: *openstack-origin
-  cinder-ceph:
-    annotations:
-      gui-x: '750'
-      gui-y: '250'
-    charm: cs:~openstack-charmers-next/cinder-ceph
-    num_units: 0
   glance:
     annotations:
       gui-x: '250'
@@ -361,6 +298,7 @@ services:
       hypervisor_mapping: true
       mirror_list: |
         [{url: 'http://10.0.8.3/cloud-images.ubuntu.com/releases/', name_prefix: 'ubuntu:released', path: 'streams/v1/index.json', max: 1, item_filters: ['release=xenial', 'arch=amd64', 'ftype~(disk1.img|root.tar.xz)']}]
+      use_swift: false
       # LP: #1679829
       # source: *source
       # key: *key
