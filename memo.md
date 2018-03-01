@@ -68,6 +68,12 @@ Make sure the standard set of packages is installed.
 $ sudo apt install minimal^ standard^ server^
 ```
 
+Make sure binfmt-support is installed to avoid race conditions.
+
+```
+$ sudo apt install binfmt-support
+```
+
 Kernel upgrade for AMD Ryzen 7.
 
 ```
