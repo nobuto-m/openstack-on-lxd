@@ -32,6 +32,10 @@ iface enp7s0f1 inet manual
     mtu 1460
 ```
 
+```
+$ sudo ifup -a
+```
+
 ## disk setup
 
 ```
@@ -56,6 +60,13 @@ Upgrade.
 ```
 $ sudo apt update
 $ sudo apt upgrade
+```
+
+Kernel upgrade for AMD Ryzen 7.
+
+```
+$ sudo apt-get install linux-generic-hwe-16.04
+$ sudo reboot
 ```
 
 Repositories.
