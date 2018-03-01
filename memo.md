@@ -62,6 +62,12 @@ $ sudo apt update
 $ sudo apt upgrade
 ```
 
+Make sure the standard set of packages is installed.
+
+```
+$ sudo apt install minimal^ standard^ server^
+```
+
 Kernel upgrade for AMD Ryzen 7.
 
 ```
