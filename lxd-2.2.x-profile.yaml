@@ -6,13 +6,13 @@ config:
   linux.kernel_modules: openvswitch,nbd,ip_tables,ip6_tables
 devices:
   eth0:
-    mtu: "9000"
+    mtu: "1460"
     name: eth0
     nictype: bridged
     parent: lxd-lab-br0
     type: nic
   eth1:
-    mtu: "9000"
+    mtu: "1460"
     name: eth1
     nictype: bridged
     parent: lxd-lab-br0

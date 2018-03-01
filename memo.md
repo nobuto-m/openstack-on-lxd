@@ -29,6 +29,7 @@ iface enp6s0 inet dhcp
 
 auto enp7s0f1
 iface enp7s0f1 inet manual
+    mtu 1460
 ```
 
 ## disk setup
