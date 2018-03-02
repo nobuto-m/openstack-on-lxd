@@ -68,6 +68,15 @@ Make sure the standard set of packages is installed.
 $ sudo apt install minimal^ standard^ server^
 ```
 
+Limit OpenSSH access.
+
+```
+$ sudo ufw default allow incoming
+$ sudo ufw default allow routed
+
+$ sudo ufw limit OpenSSH
+```
+
 Workaround for race condition of proc-sys-fs-binfmt_misc.mount.
 
 ```
