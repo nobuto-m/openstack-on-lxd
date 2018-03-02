@@ -28,8 +28,12 @@ auto lo
 iface lo inet loopback
 
 # The primary network interface
-auto enp6s0
-iface enp6s0 inet dhcp
+auto br0
+iface br0 inet static
+    address 192.168.1.10/24
+    gateway 192.168.1.1
+    dns-nameservers 192.168.1.1
+    bridge_ports enp7s0f1
 
 auto enp7s0f1
 iface enp7s0f1 inet manual
@@ -142,20 +146,11 @@ $ lxc network create lxdbr0 \
     ipv6.address=none
 ```
 
-Define additional bridge.
-
-```
-$ lxc network create lxd-lab-br0 \
-    bridge.external_interfaces=enp7s0f1 \
-    ipv4.address=none \
-    ipv6.address=none
-```
-
 Default profile.
 
 ```
 $ lxc profile device add default root disk path=/ pool=default
-$ lxc profile device add default eth0 nic nictype=bridged parent=lxdbr0 name=eth0
+$ lxc profile device add default eth0 nic nictype=bridged parent=br0 name=eth0
 ```
 
 ## Juju setup

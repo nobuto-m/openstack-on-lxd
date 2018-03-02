@@ -9,13 +9,13 @@ devices:
     mtu: "1460"
     name: eth0
     nictype: bridged
-    parent: lxd-lab-br0
+    parent: br0
     type: nic
   eth1:
     mtu: "1460"
     name: eth1
     nictype: bridged
-    parent: lxd-lab-br0
+    parent: br0
     type: nic
   kvm:
     path: /dev/kvm

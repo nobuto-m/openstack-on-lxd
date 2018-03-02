@@ -1,2 +1,2 @@
 default-series: xenial
-apt-http-proxy: http://10.0.8.1:8000
+apt-http-proxy: http://192.168.1.10:8000
