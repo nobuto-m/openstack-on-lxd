@@ -12,6 +12,10 @@ $ ip link | grep enp
 * enp7s0f0 -> not cabled
 * enp7s0f1 -> cabled to the same lab network, to be used as a bridge port
 
+```
+$ sudo apt install bridge-utils
+```
+
 [/etc/network/interfaces]
 ```
 # This file describes the network interfaces available on your system
@@ -114,7 +118,7 @@ $ sudo apt install -t xenial-backports lxd
 Install the rest of packages.
 
 ```
-$ sudo apt-get install juju squid-deb-proxy bridge-utils \
+$ sudo apt-get install juju squid-deb-proxy \
     python-novaclient python-keystoneclient python-glanceclient \
     python-neutronclient python-openstackclient curl
 ```
