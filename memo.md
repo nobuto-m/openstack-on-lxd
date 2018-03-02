@@ -68,10 +68,18 @@ Make sure the standard set of packages is installed.
 $ sudo apt install minimal^ standard^ server^
 ```
 
-Make sure binfmt-support is installed to avoid race conditions.
+Workaround for race condition of proc-sys-fs-binfmt_misc.mount.
 
 ```
-$ sudo apt install binfmt-support
+$ sudo mkdir -p /etc/systemd/system/proc-sys-fs-binfmt_misc.mount.d/
+
+$ cat <<EOF | sudo tee /etc/systemd/system/proc-sys-fs-binfmt_misc.mount.d/override.conf
+[Unit]
+StartLimitInterval=60
+StartLimitBurst=120
+EOF
+
+$ sudo systemctl daemon-reload
 ```
 
 Kernel upgrade for AMD Ryzen 7.
