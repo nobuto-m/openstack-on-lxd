@@ -8,9 +8,9 @@ $ ip link | grep enp
 4: enp7s0f1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
 ```
 
-* enp6s0   -> main interface with DHCP clinet on the lab network
+* enp6s0   -> cabled, but not used atm
 * enp7s0f0 -> not cabled
-* enp7s0f1 -> cabled to the same lab network, to be used as a bridge port
+* enp7s0f1 -> cabled, to be used as a bridge port
 
 ```
 $ sudo apt install bridge-utils
@@ -41,7 +41,7 @@ iface enp7s0f1 inet manual
 ```
 
 ```
-$ sudo ifup -a
+$ sudo reboot
 ```
 
 ## disk setup
