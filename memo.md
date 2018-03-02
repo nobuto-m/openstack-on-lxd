@@ -173,3 +173,12 @@ $ juju bootstrap --model-default config.yaml localhost lxd
 ```
 $ juju deploy ./bundle-pike.yaml
 ```
+
+## Re-deploy
+
+```
+$ juju destroy-model default
+$ juju add-model default
+
+$ juju deploy ./bundle-pike.yaml
+```
