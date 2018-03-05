@@ -18,11 +18,15 @@ neutron subnet-create ext_net 192.168.1.0/24 \
     --dns-nameserver 192.168.1.1 --gateway 192.168.1.1
 
 if [ ! -e ~/ubuntu-16.04-server-cloudimg-amd64-disk1.img ]; then
-    wget 'http://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img'
+    wget -O ~/ubuntu-16.04-server-cloudimg-amd64-disk1.img \
+        'http://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img'
 fi
 
-openstack image create --public \
-    --container-format=bare \
-    --disk-format=qcow2 \
-    --min-disk=3 \
-    ubuntu-16.04-server-cloudimg-amd64-disk1
+if ! openstack image show ubuntu-16.04-server-cloudimg-amd64-disk1; then
+    openstack image create --public \
+        --container-format=bare \
+        --disk-format=qcow2 \
+        --min-disk=3 \
+        --file ~/ubuntu-16.04-server-cloudimg-amd64-disk1.img \
+        ubuntu-16.04-server-cloudimg-amd64-disk1
+fi
