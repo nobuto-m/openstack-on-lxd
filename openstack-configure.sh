@@ -74,6 +74,7 @@ if ! openstack server show admin_test_instance | grep -w ext_net; then
     openstack server add floating ip "$(openstack server list | grep -w admin_test_instance | awk '{ print $2 }')" "$floating_ip" || exit 1
 fi
 
+sleep 30
 openstack console log show --lines 30 admin_test_instance
 
-ping -c 15 "$floating_ip"
+ping -c 5 "$floating_ip"
