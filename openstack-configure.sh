@@ -69,7 +69,7 @@ openstack security group rule create \
     "$(openstack security group list --project admin --project-domain admin_domain | grep default | awk '{ print $2 }')" \
     --protocol tcp --remote-ip 0.0.0.0/0 --dst-port 22
 
-if ! openstack server show admin_test_instance | grep -w ext_net; then
+if ! openstack server show admin_test_instance | grep -w -F 192.168.1; then
     floating_ip=$(openstack floating ip create ext_net | grep -w floating_ip_address | awk '{ print $4 }')
     openstack server add floating ip "$(openstack server list | grep -w admin_test_instance | awk '{ print $2 }')" "$floating_ip" || exit 1
 fi
