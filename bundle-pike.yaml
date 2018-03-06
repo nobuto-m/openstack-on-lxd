@@ -239,6 +239,7 @@ services:
       migration-auth-type: ssh
       openstack-origin: cloud:xenial-pike
       force-raw-images: False
+      config-flags: 'block_device_allocate_retries=300'
   openstack-dashboard:
     annotations:
       gui-x: '500'
