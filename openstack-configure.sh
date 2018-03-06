@@ -17,17 +17,17 @@ neutron subnet-create ext_net 192.168.1.0/24 \
     --allocation-pool start=192.168.1.140,end=192.168.1.170 \
     --dns-nameserver 192.168.1.1 --gateway 192.168.1.1
 
-if neutron net-show admin_private; then
+if ! neutron net-show admin_private; then
     neutron net-create admin_private
 fi
 
-if neutron subnet-show admin_private_subnet; then
+if ! neutron subnet-show admin_private_subnet; then
     neutron subnet-create admin_private 10.0.0.0/24 \
         --name admin_private_subnet \
         --dns-nameserver 192.168.1.1 --gateway 10.0.0.1
 fi
 
-if neutron router-show admin_router; then
+if ! neutron router-show admin_router; then
     neutron router-create admin_router
 fi
 neutron router-interface-add admin_router admin_private_subnet
@@ -71,7 +71,7 @@ openstack security group rule create \
 
 if ! openstack server show admin_test_instance | grep -w ext_net; then
     floating_ip=$(openstack floating ip create ext_net | grep -w floating_ip_address | awk '{ print $4 }')
-    openstack server add floating ip "$(openstack server list | grep -w admin_test_instance | awk '{ print $2 }')" "$floating_ip"
+    openstack server add floating ip "$(openstack server list | grep -w admin_test_instance | awk '{ print $2 }')" "$floating_ip" || exit 1
 fi
 
 openstack console log show --lines 30 admin_test_instance
