@@ -11,10 +11,6 @@ services:
     num_units: 3
     options:
       expected-osd-count: 3
-    to:
-    - ceph-osd/0
-    - ceph-osd/1
-    - ceph-osd/2
   ceph-osd:
     annotations:
       gui-x: '1000'
