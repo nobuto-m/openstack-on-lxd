@@ -1,0 +1,57 @@
+
+juju deploy ./bundle-bionic-queens.yaml
+
+juju deploy cinder
+juju config cinder block-device=None
+
+juju deploy cinder-backup
+
+juju add-relation cinder cinder-backup
+
+juju add-relation ceph-mon:client cinder-backup:ceph
+
+
+juju offer ceph-mon:client
+
+
+
+juju add-model another-model
+
+juju model-config default-series=bionic
+
+juju deploy cinder
+juju config cinder block-device=None
+
+juju deploy cinder-backup
+
+#juju deploy ~/dev/openstack/charm-cinder-backup cinder-backup-dirty
+
+juju add-relation cinder cinder-backup
+#juju add-relation cinder cinder-backup-dirty
+
+juju find-offers
+
+juju add-relation admin/default.ceph-mon cinder-backup:ceph
+#juju add-relation admin/default.ceph-mon cinder-backup-dirty:ceph
+
+
+$ juju run -m another-model --unit cinder-backup/0 -- relation-get -r ceph:2 - ceph-mon/0
+auth: cephx
+broker-rsp-remote-938f0ad2ef134a9e84aa3ac5cc5c9e48-0: '{"exit-code": 0, "request-id":
+  "e4b59d93-8331-11e8-86bc-00163e8f9cfb"}'
+broker_rsp: '{"exit-code": 0, "request-id": "e4b59d93-8331-11e8-86bc-00163e8f9cfb"}'
+ceph-public-address: 10.0.8.155
+egress-subnets: 10.0.8.155/32
+ingress-address: 10.0.8.155
+key: AQCE5kJbbD0SGBAAqeyGsoSDJhF4VpEnoTv0Gg==
+private-address: 10.0.8.155
+
+
+
+$ juju run -m default --unit ceph-mon/0 -- relation-get -r client:7 - remote-938f0ad2ef134a9e84aa3ac5cc5c9e48/0
+broker_req: '{"api-version": 1, "request-id": "e4b59d93-8331-11e8-86bc-00163e8f9cfb",
+  "ops": [{"group": null, "name": "cinder-backup", "weight": null, "replicas": 3,
+  "pg_num": null, "group-namespace": null, "op": "create-pool"}]}'
+egress-subnets: 10.0.8.131/32
+ingress-address: 10.0.8.131
+private-address: 10.0.8.131
