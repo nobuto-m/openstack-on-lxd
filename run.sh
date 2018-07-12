@@ -4,6 +4,7 @@
 #set -u
 set -x
 
+juju add-model openstack
 juju deploy ./bundle-xenial-queens.yaml
 
 time juju wait -w
