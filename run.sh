@@ -1,12 +1,17 @@
 #!/bin/bash
 
 #set -e
-set -u
+#set -u
 set -x
 
 juju deploy ./bundle-xenial-queens.yaml
 
 time juju wait -w
+
+# venv
+virtualenv .local/venv
+./.local/venv/bin/pip install python-keystoneclient python-neutronclient
+. ./.local/venv/bin/activate
 
 . ./novarc_ksv3
 
