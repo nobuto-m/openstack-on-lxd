@@ -14,7 +14,7 @@ virtualenv .local/venv
 ./.local/venv/bin/pip install python-keystoneclient python-neutronclient
 . ./.local/venv/bin/activate
 
-. ./novarc_ksv3
+. ./openrc
 
 openstack image create --public --container-format=bare --disk-format=qcow2 xenial \
     --file ~/Downloads/ubuntu-16.04-minimal-cloudimg-amd64-disk1.img
@@ -39,6 +39,6 @@ for i in $(openstack security group list | awk '/default/{ print $2 }'); do \
     openstack security group rule create $i --protocol tcp --remote-ip 0.0.0.0/0 --dst-port 22; \
 done
 
-openstack server create --image xenial --flavor m1.small --key-name mykey \
+openstack server create --image xenial --flavor m1.tiny --key-name mykey \
    --wait --nic net-id=$(openstack network list | grep internal | awk '{ print $2 }') \
    openstack-on-lxd-ftw
