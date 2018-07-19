@@ -26,7 +26,7 @@ openstack image create --public --container-format=bare --disk-format=qcow2 xeni
     -f 10.0.8.201:10.0.8.254 ext_net
 
 ./neutron-tenant-net-ksv3 -p admin -r provider-router \
-    -N 10.0.8.1 internal 192.168.20.0/24
+    internal 192.168.20.0/24
 
 openstack keypair create --public-key ~/.ssh/id_rsa.pub mykey
 
