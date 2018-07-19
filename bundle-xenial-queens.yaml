@@ -123,8 +123,8 @@ services:
       flat-network-providers: physnet1
       enable-ml2-dns: true
       dns-domain: openstack.mydomain.example.com.
-      # reverse-dns-lookup: true
-      # ipv4-ptr-zone-prefix-size: 24
+      reverse-dns-lookup: true
+      ipv4-ptr-zone-prefix-size: 24
   neutron-gateway:
     annotations:
       gui-x: '0'
