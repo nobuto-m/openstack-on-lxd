@@ -64,6 +64,8 @@ services:
   designate:
     charm: cs:designate
     num_units: 1
+    options:
+      nameservers: ns1.openstack.mydomain.example.com.
   designate-bind:
     charm: cs:designate-bind
     num_units: 1
@@ -119,6 +121,10 @@ services:
       overlay-network-type: "gre vxlan"
       openstack-origin: cloud:xenial-queens
       flat-network-providers: physnet1
+      enable-ml2-dns: true
+      dns-domain: openstack.mydomain.example.com.
+      # reverse-dns-lookup: true
+      # ipv4-ptr-zone-prefix-size: 24
   neutron-gateway:
     annotations:
       gui-x: '0'
