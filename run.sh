@@ -14,7 +14,7 @@ virtualenv .local/venv
 ./.local/venv/bin/pip install python-keystoneclient python-neutronclient
 . ./.local/venv/bin/activate
 
-. ./openrc
+. ./openrcv3_project
 
 openstack image create --public --container-format=bare --disk-format=qcow2 xenial \
     --file ~/Downloads/ubuntu-16.04-minimal-cloudimg-amd64-disk1.img
