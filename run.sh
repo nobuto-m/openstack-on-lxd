@@ -7,6 +7,8 @@ set -x
 juju add-model openstack
 juju deploy ./bundle-xenial-queens.yaml
 
+juju config keystone admin-password=openstack
+
 time juju wait -w
 
 # venv
@@ -42,3 +44,5 @@ done
 openstack server create --image xenial --flavor m1.tiny --key-name mykey \
    --wait --nic net-id=$(openstack network list | grep internal | awk '{ print $2 }') \
    openstack-on-lxd-ftw
+
+./float-all
