@@ -11,6 +11,10 @@ juju config keystone admin-password=openstack
 
 time juju wait -w
 
+# forwarders, dnsmasq -> bind -> upstream dns
+juju config designate-bind forwarders=10.0.8.1
+juju config neutron-gateway dns-servers="$(juju run --unit designate-bind/0 unit-get private-address)"
+
 # venv
 virtualenv .local/venv
 ./.local/venv/bin/pip install python-keystoneclient python-neutronclient
