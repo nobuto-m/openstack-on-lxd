@@ -1,0 +1,10 @@
+export OS_AUTH_URL=http://$(juju run --unit keystone/0 unit-get private-address):5000/v3
+export OS_REGION_NAME=RegionOne
+export OS_PROJECT_NAME=my-project
+export OS_PROJECT_DOMAIN_NAME=default
+export OS_USER_DOMAIN_NAME=default
+export OS_AUTH_VERSION=3
+export OS_IDENTITY_API_VERSION=3
+export OS_AUTH_TYPE=password
+export OS_PASSWORD=non-admin
+export OS_USERNAME=non-admin

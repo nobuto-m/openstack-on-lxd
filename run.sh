@@ -51,3 +51,17 @@ openstack server create --image xenial --flavor m1.tiny --key-name mykey \
    openstack-on-lxd-ftw
 
 ./float-all
+
+# define non-admin user
+openstack project create --domain default my-project
+openstack user create \
+    --project my-project --project-domain default \
+    --domain default \
+    --email non-admin@localhost.localdomain \
+    --password non-admin \
+    non-admin
+
+openstack role add \
+    --project my-project --project-domain default \
+    --user non-admin --user-domain default \
+    Member
