@@ -13,9 +13,9 @@ time juju wait -w
 
 # forwarders, dnsmasq -> bind -> upstream dns
 # TODO: change it to external BIND
-juju config neutron-gateway dns-servers="$(juju run --unit designate-bind/0 unit-get private-address)"
-juju config designate-bind allowed_nets='10.0.0.0/8;172.16.0.0/12;192.168.0.0/16'
-juju config designate-bind forwarders='8.8.8.8;8.8.4.4'
+#juju config neutron-gateway dns-servers="$(juju run --unit designate-bind/0 unit-get private-address)"
+#juju config designate-bind allowed_nets='10.0.0.0/8;172.16.0.0/12;192.168.0.0/16'
+#juju config designate-bind forwarders='8.8.8.8;8.8.4.4'
 
 # venv
 virtualenv .local/venv

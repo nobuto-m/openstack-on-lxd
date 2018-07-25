@@ -59,6 +59,8 @@ relations:
   - rabbitmq-server:amqp
 - - memcached:cache
   - designate:coordinator-memcached
+- - designate:dnsaas
+  - neutron-api:external-dns
 series: xenial
 services:
   designate:
