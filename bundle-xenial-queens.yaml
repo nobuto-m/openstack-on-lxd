@@ -49,8 +49,6 @@ relations:
   - keystone
 - - heat
   - rabbitmq-server
-- - designate:dns-backend
-  - designate-bind:dns-backend
 - - designate:identity-service
   - keystone:identity-service
 - - designate:shared-db
@@ -68,9 +66,6 @@ services:
     num_units: 1
     options:
       nameservers: 'ns1.openstack.mydomain.example.com. ns2.openstack.mydomain.example.com.'
-  designate-bind:
-    charm: cs:designate-bind
-    num_units: 1
   glance:
     annotations:
       gui-x: '250'
