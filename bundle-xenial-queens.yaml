@@ -49,8 +49,8 @@ relations:
   - keystone
 - - heat
   - rabbitmq-server
-- - designate:dns-backend
-  - designate-bind:dns-backend
+#- - designate:dns-backend
+#  - designate-bind:dns-backend
 - - designate:identity-service
   - keystone:identity-service
 - - designate:shared-db
