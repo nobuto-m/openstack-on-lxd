@@ -65,7 +65,7 @@ series: xenial
 services:
   designate:
     charm: cs:designate
-    num_units: 2
+    num_units: 3
     options:
       nameservers: 'ns1.openstack.mydomain.example.com. ns2.openstack.mydomain.example.com.'
       openstack-origin: cloud:xenial-queens
