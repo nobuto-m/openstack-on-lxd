@@ -82,6 +82,7 @@ services:
       neutron-security-groups: true
       overlay-network-type: "gre vxlan"
       flat-network-providers: physnet1
+      manage-neutron-plugin-legacy-mode: false
   neutron-gateway:
     annotations:
       gui-x: '0'
